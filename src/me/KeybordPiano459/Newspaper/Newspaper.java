@@ -16,7 +16,7 @@ public class Newspaper extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("Newspaper v1.1.1 has been enabled!");
+        getLogger().info("Newspaper v1.2 has been enabled!");
         config = new Config(this);
         newsfile = new NewsFile();
 
@@ -26,6 +26,8 @@ public class Newspaper extends JavaPlugin {
 
         try {
             BukkitMetrics metrics = new BukkitMetrics(this);
+            MetricsGraph graph = new MetricsGraph(this);
+            graph.addPagesGraph(metrics);
             metrics.start();
         } catch (IOException e) {
             // Failed to submit the stats :-(
@@ -44,7 +46,7 @@ public class Newspaper extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info("Newspaper v1.1.1 has been disabled.");
+        getLogger().info("Newspaper v1.2 has been disabled.");
     }
 
     public boolean Vault() {

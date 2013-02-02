@@ -32,7 +32,7 @@ public class CommandNews implements CommandExecutor {
                     ArrayList<String> news = plugin.getNewspaper().getNews();
                     ItemStack newspaper = new ItemStack(Material.WRITTEN_BOOK);
                     BookMeta meta = (BookMeta) newspaper.getItemMeta();
-                    meta.setTitle("Newspaper");
+                    meta.setTitle(ChatColor.YELLOW + "Newspaper");
                     meta.setAuthor(config.getString("author"));
                     meta.setPages(news);
                     newspaper.setItemMeta(meta);

@@ -1,8 +1,8 @@
-![Newspaper](http://reshade.com/resize/constrain/denoise-1/image-51804266-480x272)
+![Newspaper](http://i.imgur.com/OVY2S7Z.png)
 
 Newspaper is the plugin to use when you need to get information around your server as quickly as possible.
 
-* ![Download](http://cdn2.iconfinder.com/data/icons/crystalproject/16x16/apps/ark.png)[ Download Released Builds](http://dev.bukkit.org/server-mods/kessentials/files/)
+* !(http://cdn1.iconfinder.com/data/icons/Futurosoft%20Icons%200.5.2/16x16/mimetypes/Files-Word.png)[ Download Released Builds](http://dev.bukkit.org/server-mods/newspaper/files/)
 * ![Bug Tracker](http://cdn2.iconfinder.com/data/icons/kids/16x16/apps/agt_update_critical.png)[ Report Bugs/Suggest Features](http://dev.bukkit.org/server-mods/kessentials/tickets/)
 * ![Commands](http://cdn2.iconfinder.com/data/icons/oxygen/16x16/mimetypes/text-x-script.png)[ List of Commands](http://dev.bukkit.org/server-mods/kessentials/pages/commands/)
 * ![Github](http://cdn1.iconfinder.com/data/icons/Keyamoon-IcoMoon--limited/16/github-cat.png)[ Github Page](https://github.com/keybordpiano459/kEssentials/)

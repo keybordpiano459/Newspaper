@@ -1,4 +1,4 @@
-![Newspaper](http://i.imgur.com/zRGeoPD.png)
+![Newspaper](http://reshade.com/resize/constrain/denoise-1/image-51804266-480x272)
 
 Newspaper is the plugin to use when you need to get information around your server as quickly as possible.
 

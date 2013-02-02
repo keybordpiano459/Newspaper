@@ -136,8 +136,11 @@ public class BukkitMetrics {
         synchronized (optOutLock) {
             try {
                 configuration.load(getConfigFile());
-            } catch (IOException | InvalidConfigurationException ex) {
-                if (debug) Bukkit.getLogger().log(Level.INFO, "[Metrics] {0}", ex.getMessage());
+            } catch (IOException e) {
+                if (debug) Bukkit.getLogger().log(Level.INFO, "[Metrics] {0}", e.getMessage());
+                return true;
+            } catch (InvalidConfigurationException e) {
+                if (debug) Bukkit.getLogger().log(Level.INFO, "[Metrics] {0}", e.getMessage());
                 return true;
             }
             return configuration.getBoolean("opt-out", false);

@@ -1,3 +1,6 @@
+Newspaper 1.1.2
+- Fixed a bug with the API
+
 Newspaper 1.1.1
 - Re-did the API (will make documentation soon)
 - Fixed a bug that didn't generate the news.txt file

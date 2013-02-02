@@ -8,15 +8,12 @@ import java.util.Scanner;
 import org.bukkit.ChatColor;
 
 public class NewsFile {
-    Newspaper plugin;
-    public NewsFile(Newspaper plugin) {
-        this.plugin = plugin;
-    }
     
+    private File folder = new File("plugins" + File.separator + "Newspaper");
     private File newsFile = null;
     
     public void createNews() {
-        newsFile = new File(plugin.getDataFolder(), "news.txt");
+        newsFile = new File(folder, "news.txt");
         if (!newsFile.exists()) {
             try {
                 newsFile.createNewFile();
@@ -35,7 +32,7 @@ public class NewsFile {
     
     public void setNews(String news) {
         try {
-            newsFile = new File(plugin.getDataFolder(), "news.txt");
+            newsFile = new File(folder, "news.txt");
             FileWriter writer = new FileWriter(newsFile);
             writer.write(news);
             writer.close();
@@ -48,7 +45,7 @@ public class NewsFile {
         ArrayList<String> news = new ArrayList<String>();
         String page = "";
         try {
-            File file = new File(plugin.getDataFolder(), "news.txt");
+            File file = new File(folder, "news.txt");
             Scanner s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = ChatColor.translateAlternateColorCodes('&', s.nextLine()) + "\n";

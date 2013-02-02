@@ -18,7 +18,7 @@ public class Newspaper extends JavaPlugin {
     public void onEnable() {
         getLogger().info("Newspaper v1.1.1 has been enabled!");
         config = new Config(this);
-        newsfile = new NewsFile(this);
+        newsfile = new NewsFile();
 
         folder.mkdirs();
         config.createConfig();

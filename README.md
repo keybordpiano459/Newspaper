@@ -30,5 +30,5 @@ Installing the plugin itself is easy. Just drag the .jar file that you downloade
 * Written out newspapers on maps (not sure if i still should)
 * SQL support to view news on your website
 
-* --Improve color system--
-* --Soft-depend on Vault--
+* ~~Improve color system~~
+* ~~Soft-depend on Vault~~

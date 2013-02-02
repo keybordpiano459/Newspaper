@@ -1,0 +1,9 @@
+name: Newspaper
+main: me.KeybordPiano459.Newspaper.Newspaper
+description: A plugin used to inform your users
+version: 1.1
+softdepend: [Vault]
+
+commands:
+  news:
+    description: Order a newspaper

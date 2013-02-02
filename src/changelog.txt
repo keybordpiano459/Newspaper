@@ -1,0 +1,85 @@
+Newspaper 1.1.1
+- Re-did the API (will make documentation soon)
+- Fixed a bug that didn't generate the news.txt file
+- Added a way to make a new page in the newspaper
+
+Newspaper 1.1
+- Removed message on join
+- Removed /news [news] [set] [message]
+- Made newspapers into books
+- Removed the API
+- Made a news.txt file
+- Added comments to config
+- Improved the color system
+- Recoded EVERYTHING
+
+Newspaper 1.0.1
+- Updated metrics
+- Fixed naming items for 1.4.6
+- Fixed deprecation bug
+
+Newspaper 1.0
+- Cleaned up lots of code
+- Made the newspaper an actual item
+- Removed /newspaper
+- Removed /ad
+- Removed /notd
+- Using /news now gives you a newspaper
+- Right-clicking with a newspaper shows the news
+- Left-clicking with a newspaper shows the NOTD
+- Added join message
+- Improved vault not found error
+- Made a quick API
+
+Beta 0.4b
+- Added error messages
+- Fixed /news bug
+- Edited /newspaper
+- Made console commands more console-friendly
+- Added vault message option
+- Removed /events
+- Merged /events to /news
+
+Beta 0.31b
+- Added /ad <message>
+- Fixed /news bug
+- Edited /newspaper
+- Fixed console error message
+- Changed vault error message
+
+Beta 0.3b
+- Vault is now a soft-dependency
+- Added [Newspaper] prefix to /news
+- Changed advertisement system
+- Removed /ads
+- Fixed error in console whenever a command is typed
+
+Beta 0.21b
+- Added /events (change in config)
+- Added /ads (change in config)
+
+Beta 0.2b
+- Added Vault support to /news
+- Newspaper is now dependant on Vault
+- Added color to /news and /notd
+- Added a prefix to most Newspaper messages
+- If you type /help, Newspaper is now in red on top
+
+Beta 0.1b
+- Project on BukkitDev
+- Merged /newsinfo to /newspaper
+- Removed /newsinfo
+- Added more to /newspaper
+
+Alpha 0.6a
+- Added /newsinfo
+- We now use PluginMetrics
+- Cleaned up code/removed an error
+
+Alpha 0.52a
+- Fixed /test
+
+Alpha 0.51a
+- Added /news
+- Added /newspaper
+- Added /notd

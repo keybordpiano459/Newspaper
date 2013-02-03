@@ -20,4 +20,20 @@ public class MetricsGraph {
             }
         });
     }
+    
+    public void addNewsTypeGraph(BukkitMetrics metrics) {
+        Graph graph = metrics.createGraph("News Type Used");
+        String nt = plugin.getConfig().getString("news-type");
+        if (nt.equalsIgnoreCase("book")) addNTPlotter(graph, "Book");
+        else if (nt.equalsIgnoreCase("map")) addNTPlotter(graph, "Map");
+    }
+    
+    private void addNTPlotter(Graph graph, String name) {
+        graph.addPlotter(new BukkitMetrics.Plotter(name) {
+            @Override
+            public int getValue() {
+                return 1;
+            }
+        });
+    }
 }

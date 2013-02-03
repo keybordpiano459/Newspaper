@@ -33,8 +33,9 @@ public class CommandNews implements CommandExecutor {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (args.length == 0) {
-                    if (plugin.getConfig().getString("news-type").equalsIgnoreCase("book")) giveNewsBook(player);
-                    else if (plugin.getConfig().getString("news-type").equalsIgnoreCase("map")) giveNewsMap(player);
+                    String nt = plugin.getConfig().getString("news-type");
+                    if (nt.equalsIgnoreCase("book")) giveNewsBook(player);
+                    else if (nt.equalsIgnoreCase("map")) giveNewsMap(player);
                     else player.sendMessage(prefix + "This plugin wasn't set up correctly. Please contact an administrator.");
                 } else if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("book")) {
@@ -62,8 +63,8 @@ public class CommandNews implements CommandExecutor {
     }
 
     private void giveNewsBook(Player player) {
-        ArrayList<String> news = plugin.getNewspaper().getNews();
         ItemStack newspaper = new ItemStack(Material.WRITTEN_BOOK);
+        ArrayList<String> news = plugin.getNewspaper().getNews();
         BookMeta meta = (BookMeta) newspaper.getItemMeta();
         meta.setTitle(ChatColor.YELLOW + "Newspaper");
         meta.setAuthor(config.getString("author"));
@@ -91,12 +92,9 @@ public class CommandNews implements CommandExecutor {
             EconomyResponse response = plugin.econ.withdrawPlayer(player.getName(), config.getDouble("cost"));
             if (config.getBoolean("vault-message")) {
                 if (response.transactionSuccess()) {
-                    String msg = config.getString("vault-message");
-                    if (!"none".equals(msg)) {
-                        player.sendMessage(prefix + "$" + config.getString("cost") + " has been withdrawn from your account.");
-                    }
+                    player.sendMessage(prefix + "$" + config.getString("cost") + " has been withdrawn from your account.");
                 } else if (config.getBoolean("vault-error")) {
-                    player.sendMessage(prefix + ChatColor.RED + "There was an error withdrawing money from your account.");
+                    player.sendMessage(prefix + "There was an error withdrawing money from your account.");
                 }
             }
         }

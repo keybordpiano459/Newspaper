@@ -34,6 +34,9 @@ public class Config {
             FileWriter w = new FileWriter(customConfigFile);
             w(w, "# Newspaper | KeybordPiano459");
             w(w, "");
+            w(w, "# Should you be notified when there's a new update?");
+            w(w, "update-checker: true");
+            w(w, "");
             w(w, "# What should the newspaper's form be?");
             w(w, "# Set this to 'book' or 'map'");
             w(w, "news-type: book");

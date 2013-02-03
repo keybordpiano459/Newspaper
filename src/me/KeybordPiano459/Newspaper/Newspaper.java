@@ -2,7 +2,7 @@ package me.KeybordPiano459.Newspaper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.logging.Level;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -10,24 +10,29 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Newspaper extends JavaPlugin {
 
-    public ArrayList<Short> mapids = new ArrayList<Short>();
+    public double version = 1.3;
+    public String updatemsg = "There was an error retrieving update data.";
+    
     public Economy econ = null;
     private File folder = new File("plugins" + File.separator + "Newspaper");
     private Config config;
     private NewsFile newsfile;
     private MapsFile mapsfile;
+    private UpdateChecker updatechecker;
 
     @Override
     public void onEnable() {
-        getLogger().info("Newspaper v1.2 has been enabled!");
+        getLogger().log(Level.INFO, "Newspaper v{0} has been enabled!", version);
         config = new Config(this);
         newsfile = new NewsFile();
         mapsfile = new MapsFile();
+        updatechecker = new UpdateChecker(this);
 
         folder.mkdirs();
         config.createConfig();
         newsfile.createNews();
         mapsfile.createMapsFile();
+        updatechecker.startUpdateCheck();
 
         try {
             BukkitMetrics metrics = new BukkitMetrics(this);
@@ -52,7 +57,7 @@ public class Newspaper extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info("Newspaper v1.2 has been disabled.");
+        getLogger().log(Level.INFO, "Newspaper v{0} has been disabled.", version);
     }
 
     public boolean Vault() {

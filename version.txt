@@ -1,0 +1,3 @@
+# Working on a version checker
+
+1.3: Your version of Newspaper is currently up to date

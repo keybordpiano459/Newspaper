@@ -3,6 +3,7 @@ package me.KeybordPiano459.Newspaper;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -12,6 +13,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.map.MapRenderer;
+import org.bukkit.map.MapView;
 
 public class CommandNews implements CommandExecutor {
     Newspaper plugin;
@@ -29,32 +33,21 @@ public class CommandNews implements CommandExecutor {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (args.length == 0) {
-                    ArrayList<String> news = plugin.getNewspaper().getNews();
-                    ItemStack newspaper = new ItemStack(Material.WRITTEN_BOOK);
-                    BookMeta meta = (BookMeta) newspaper.getItemMeta();
-                    meta.setTitle(ChatColor.YELLOW + "Newspaper");
-                    meta.setAuthor(config.getString("author"));
-                    meta.setPages(news);
-                    newspaper.setItemMeta(meta);
-                    player.getInventory().addItem(newspaper);
-                    
-                    if (plugin.Vault()) {
-                        EconomyResponse response = plugin.econ.withdrawPlayer(player.getName(), config.getDouble("cost"));
-                        if (config.getBoolean("vault-message")) {
-                            if (response.transactionSuccess()) {
-                                String msg = config.getString("vault-message");
-                                if (!"none".equals(msg)) {
-                                    player.sendMessage(prefix + "$" + config.getString("cost") + " has been withdrawn from your account.");
-                                }
-                            } else if (config.getBoolean("vault-error")) {
-                                player.sendMessage(prefix + ChatColor.RED + "There was an error withdrawing money from your account.");
-                            }
-                        }
-                    }
+                    if (plugin.getConfig().getString("news-type").equalsIgnoreCase("book")) giveNewsBook(player);
+                    else if (plugin.getConfig().getString("news-type").equalsIgnoreCase("map")) giveNewsMap(player);
+                    else player.sendMessage(prefix + "This plugin wasn't set up correctly. Please contact an administrator.");
                 } else if (args.length == 1) {
-                    if (args[0].equalsIgnoreCase("reload")) {
-                        plugin.getNewsConfig().reloadConfig();
-                        player.sendMessage(prefix + "Reload complete.");
+                    if (args[0].equalsIgnoreCase("book")) {
+                        giveNewsBook(player);
+                    } else if (args[0].equalsIgnoreCase("map")) {
+                        giveNewsMap(player);
+                    } else if (args[0].equalsIgnoreCase("reload")) {
+                        if (player.hasPermission("newspaper.admin")) {
+                            plugin.getNewsConfig().reloadConfig();
+                            player.sendMessage(prefix + "Reload complete.");
+                        } else {
+                            player.sendMessage(prefix + "You don't have permission to do that!");
+                        }
                     } else {
                         player.sendMessage(prefix + "Incorrect usage! Type /news");
                     }
@@ -66,5 +59,46 @@ public class CommandNews implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    private void giveNewsBook(Player player) {
+        ArrayList<String> news = plugin.getNewspaper().getNews();
+        ItemStack newspaper = new ItemStack(Material.WRITTEN_BOOK);
+        BookMeta meta = (BookMeta) newspaper.getItemMeta();
+        meta.setTitle(ChatColor.YELLOW + "Newspaper");
+        meta.setAuthor(config.getString("author"));
+        meta.setPages(news);
+        newspaper.setItemMeta(meta);
+        player.getInventory().addItem(newspaper);
+        withdrawNewsMoney(player);
+    }
+
+    private void giveNewsMap(Player player) {
+        ItemStack map = new ItemStack(Material.MAP);
+        MapView mv = Bukkit.createMap(Bukkit.getWorlds().get(0));
+        for (MapRenderer renderer : mv.getRenderers()) mv.removeRenderer(renderer);
+        mv.addRenderer(new NewsMapRenderer(plugin));
+        map.setDurability(mv.getId());
+        ItemMeta meta = map.getItemMeta();
+        meta.setDisplayName(ChatColor.YELLOW + "Newspaper");
+        map.setItemMeta(meta);
+        player.getInventory().addItem(map);
+        withdrawNewsMoney(player);
+    }
+
+    private void withdrawNewsMoney(Player player) {
+        if (plugin.Vault()) {
+            EconomyResponse response = plugin.econ.withdrawPlayer(player.getName(), config.getDouble("cost"));
+            if (config.getBoolean("vault-message")) {
+                if (response.transactionSuccess()) {
+                    String msg = config.getString("vault-message");
+                    if (!"none".equals(msg)) {
+                        player.sendMessage(prefix + "$" + config.getString("cost") + " has been withdrawn from your account.");
+                    }
+                } else if (config.getBoolean("vault-error")) {
+                    player.sendMessage(prefix + ChatColor.RED + "There was an error withdrawing money from your account.");
+                }
+            }
+        }
     }
 }

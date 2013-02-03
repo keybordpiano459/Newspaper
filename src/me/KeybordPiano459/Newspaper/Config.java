@@ -34,7 +34,11 @@ public class Config {
             FileWriter w = new FileWriter(customConfigFile);
             w(w, "# Newspaper | KeybordPiano459");
             w(w, "");
-            w(w, "# The newspaper is in the form of a book, who should the author be?");
+            w(w, "# What should the newspaper's form be?");
+            w(w, "# Set this to 'book' or 'map'");
+            w(w, "news-type: book");
+            w(w, "");
+            w(w, "# If the newspaper is in the form of a book, who should the author be?");
             w(w, "author: The MCNews");
             w(w, "");
             w(w, "# What should the news cost? (vault)");

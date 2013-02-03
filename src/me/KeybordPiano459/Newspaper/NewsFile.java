@@ -18,7 +18,7 @@ public class NewsFile {
             try {
                 newsFile.createNewFile();
                 FileWriter writer = new FileWriter(newsFile);
-                writer.write("&dThis is what will be in the newspaper!\n");
+                writer.write("&1This is what will be in the newspaper!\n");
                 writer.write("&2Now with color symbol support!\n");
                 writer.write("=== NEW PAGE ===\n");
                 writer.write("&3That creates a new page!\n");

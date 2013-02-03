@@ -1,3 +1,12 @@
+Newspaper 1.2
+- Added a metrics graph for pages in newspaper
+- Made the newspaper title yellow
+- Fixed an incompatibility bug with java 6
+- Added permission check for /news [reload]
+- Added /newspaper alias for /news
+- Added [News] and [Newspaper] signs (they do the same thing)
+- Added functionality with maps
+
 Newspaper 1.1.2
 - Fixed a bug with the API
 

@@ -7,3 +7,14 @@ softdepend: [Vault]
 commands:
   news:
     description: Order a newspaper
+    aliases: [newspaper]
+
+permissions:
+  newspaper.*:
+    description: All permissions
+    default: op
+    children:
+      newspaper.admin: true
+  newspaper.admin:
+    description: All admin permissions
+    default: op

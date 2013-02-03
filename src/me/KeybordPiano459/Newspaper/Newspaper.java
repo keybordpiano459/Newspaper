@@ -2,6 +2,7 @@ package me.KeybordPiano459.Newspaper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -9,20 +10,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Newspaper extends JavaPlugin {
 
+    public ArrayList<Short> mapids = new ArrayList<Short>();
     public Economy econ = null;
     private File folder = new File("plugins" + File.separator + "Newspaper");
     private Config config;
     private NewsFile newsfile;
+    private MapsFile mapsfile;
 
     @Override
     public void onEnable() {
         getLogger().info("Newspaper v1.2 has been enabled!");
         config = new Config(this);
         newsfile = new NewsFile();
+        mapsfile = new MapsFile();
 
         folder.mkdirs();
         config.createConfig();
         newsfile.createNews();
+        mapsfile.createMapsFile();
 
         try {
             BukkitMetrics metrics = new BukkitMetrics(this);
@@ -42,6 +47,7 @@ public class Newspaper extends JavaPlugin {
         }
 
         getServer().getPluginCommand("news").setExecutor(new CommandNews(this));
+        getServer().getPluginManager().registerEvents(new NewsSign(this), this);
     }
 
     @Override
@@ -73,5 +79,9 @@ public class Newspaper extends JavaPlugin {
     
     public NewsFile getNewspaper() {
         return this.newsfile;
+    }
+    
+    public MapsFile getMapsFile() {
+        return this.mapsfile;
     }
 }

@@ -12,10 +12,8 @@ public class MetricsGraph {
     private int pages;
     
     public void addPagesGraph(BukkitMetrics metrics) {
-        String plural = " pages";
-        if (pages == 1) plural = " page";
         Graph graph = metrics.createGraph("Pages in Newspaper");
-        graph.addPlotter(new BukkitMetrics.Plotter(pages + plural) {
+        graph.addPlotter(new BukkitMetrics.Plotter(pages + " page(s)") {
             @Override
             public int getValue() {
                 return pages;

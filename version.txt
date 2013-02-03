@@ -1,2 +1,3 @@
-# Working on a version checker
+# This file is what runs the version checks in Newspaper 1.3+
+
 1.3: Your version of Newspaper is currently up to date

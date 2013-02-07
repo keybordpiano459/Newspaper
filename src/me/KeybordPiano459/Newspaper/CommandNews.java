@@ -1,5 +1,6 @@
 package me.KeybordPiano459.Newspaper;
 
+import me.KeybordPiano459.Newspaper.maps.NewsMapRenderer;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -38,11 +39,7 @@ public class CommandNews implements CommandExecutor {
                     else if (nt.equalsIgnoreCase("map")) giveNewsMap(player);
                     else player.sendMessage(prefix + "This plugin wasn't set up correctly. Please contact an administrator.");
                 } else if (args.length == 1) {
-                    if (args[0].equalsIgnoreCase("book")) {
-                        giveNewsBook(player);
-                    } else if (args[0].equalsIgnoreCase("map")) {
-                        giveNewsMap(player);
-                    } else if (args[0].equalsIgnoreCase("reload")) {
+                    if (args[0].equalsIgnoreCase("reload")) {
                         if (player.hasPermission("newspaper.admin")) {
                             plugin.getNewsConfig().reloadConfig();
                             player.sendMessage(prefix + "Reload complete.");
@@ -80,6 +77,7 @@ public class CommandNews implements CommandExecutor {
         for (MapRenderer renderer : mv.getRenderers()) mv.removeRenderer(renderer);
         mv.addRenderer(new NewsMapRenderer(plugin));
         map.setDurability(mv.getId());
+        plugin.getMapIDFile().putMapID(mv.getId());
         ItemMeta meta = map.getItemMeta();
         meta.setDisplayName(ChatColor.YELLOW + "Newspaper");
         map.setItemMeta(meta);

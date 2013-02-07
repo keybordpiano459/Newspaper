@@ -1,8 +1,9 @@
-package me.KeybordPiano459.Newspaper;
+package me.KeybordPiano459.Newspaper.maps;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import me.KeybordPiano459.Newspaper.Newspaper;
 import org.bukkit.entity.Player;
 import org.bukkit.map.MapCanvas;
 import org.bukkit.map.MapRenderer;

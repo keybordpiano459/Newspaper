@@ -1,4 +1,4 @@
-package me.KeybordPiano459.Newspaper;
+package me.KeybordPiano459.Newspaper.maps;
 
 import java.io.File;
 import java.io.FileWriter;

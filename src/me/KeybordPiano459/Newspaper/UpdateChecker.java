@@ -13,7 +13,7 @@ public class UpdateChecker {
         currentVersion = plugin.version;
     }
 
-    private double currentVersion;
+    private String currentVersion;
 
     public void startUpdateCheck() {
         if (plugin.getConfig().getBoolean("update-checker")) {
@@ -26,7 +26,7 @@ public class UpdateChecker {
                 while ((str = br.readLine()) != null) {
                     String line = str;
                     if (line.charAt(0) == '#');
-                    if (line.charAt(0) == '1' && line.charAt(2) == '3') {
+                    if (line.charAt(0) == '1' && line.charAt(2) == '3' && line.charAt(4) == '1') {
                         plugin.updatemsg = line.substring(5);
                         log.info(plugin.updatemsg);
                     }

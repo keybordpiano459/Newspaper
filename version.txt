@@ -1,2 +1,3 @@
 # This file is what runs the version checks in Newspaper 1.3+
-1.3: Your version of Newspaper is currently up to date
+1.3: Newspaper v1.3.1 has been released! Get it now on BukkitDev!
+1.3.1: Your version of Newspaper is currently up to date.

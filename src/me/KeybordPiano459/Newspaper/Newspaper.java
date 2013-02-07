@@ -1,8 +1,10 @@
 package me.KeybordPiano459.Newspaper;
 
+import me.KeybordPiano459.Newspaper.maps.MapsFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
+import me.KeybordPiano459.Newspaper.maps.MapIDFile;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -10,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Newspaper extends JavaPlugin {
 
-    public double version = 1.3;
+    public String version = "1.3.1";
     public String updatemsg = "There was an error retrieving update data.";
     
     public Economy econ = null;
@@ -18,6 +20,7 @@ public class Newspaper extends JavaPlugin {
     private Config config;
     private NewsFile newsfile;
     private MapsFile mapsfile;
+    private MapIDFile mapidfile;
     private UpdateChecker updatechecker;
 
     @Override
@@ -26,12 +29,14 @@ public class Newspaper extends JavaPlugin {
         config = new Config(this);
         newsfile = new NewsFile();
         mapsfile = new MapsFile();
+        mapidfile = new MapIDFile();
         updatechecker = new UpdateChecker(this);
 
         folder.mkdirs();
         config.createConfig();
         newsfile.createNews();
         mapsfile.createMapsFile();
+        mapidfile.createMapIDFile();
         updatechecker.startUpdateCheck();
 
         try {
@@ -53,11 +58,13 @@ public class Newspaper extends JavaPlugin {
 
         getServer().getPluginCommand("news").setExecutor(new CommandNews(this));
         getServer().getPluginManager().registerEvents(new NewsSign(this), this);
+        getServer().getPluginManager().registerEvents(new UpdateListener(this), this);
     }
 
     @Override
     public void onDisable() {
         getLogger().log(Level.INFO, "Newspaper v{0} has been disabled.", version);
+        getServer().dispatchCommand(getServer().getConsoleSender(), "save-all");
     }
 
     public boolean Vault() {
@@ -88,5 +95,9 @@ public class Newspaper extends JavaPlugin {
     
     public MapsFile getMapsFile() {
         return this.mapsfile;
+    }
+    
+    public MapIDFile getMapIDFile() {
+        return this.mapidfile;
     }
 }

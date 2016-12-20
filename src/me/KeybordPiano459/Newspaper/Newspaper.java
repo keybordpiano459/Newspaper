@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Newspaper extends JavaPlugin {
 
-    public String version = "1.3.1";
+    public String version = "1.4";
     public String updatemsg = "There was an error retrieving update data.";
     
     public Economy econ = null;
@@ -39,20 +39,11 @@ public class Newspaper extends JavaPlugin {
         mapidfile.createMapIDFile();
         updatechecker.startUpdateCheck();
 
-        try {
-            BukkitMetrics metrics = new BukkitMetrics(this);
-            MetricsGraph graph = new MetricsGraph(this);
-            graph.addPagesGraph(metrics);
-            metrics.start();
-        } catch (IOException e) {
-            // Failed to submit the stats :-(
-        }
-
         if (!Vault()) {
             getLogger().warning("+--------------------------------------------------------------+");
             getLogger().warning("|               SoftDependency Not Found - VAULT               |");
             getLogger().warning("|  Vault is what makes the economy features of Newspaper work  |");
-            getLogger().warning("|      DOWNLOAD - http://dev.bukkit.org/server-mods/vault/     |");
+            getLogger().warning("|      DOWNLOAD - https://dev.bukkit.org/projects/vault/     |");
             getLogger().warning("+--------------------------------------------------------------+");
         }
 

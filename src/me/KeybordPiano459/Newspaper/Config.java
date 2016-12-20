@@ -32,7 +32,7 @@ public class Config {
         try {
             File customConfigFile = new File(plugin.getDataFolder(), "config.yml");
             FileWriter w = new FileWriter(customConfigFile);
-            w(w, "# Newspaper | KeybordPiano459");
+            w(w, "# Newspaper | KeybordPiano459 & Gr3y4nt");
             w(w, "");
             w(w, "# Should you be notified when there's a new update?");
             w(w, "update-checker: true");
